@@ -4,6 +4,8 @@ const chaiHttp = require('chai-http')
 const db = require('../src/dbClient')
 
 chai.use(chaiHttp)
+const { expect } = chai;
+
 
 describe('User REST API', () => {
   
@@ -29,9 +31,9 @@ describe('User REST API', () => {
         .post('/user')
         .send(user)
         .then((res) => {
-          chai.expect(res).to.have.status(201)
-          chai.expect(res.body.status).to.equal('success')
-          chai.expect(res).to.be.json
+          expect(res).to.have.status(201)
+          expect(res.body.status).to.equal('success')
+          expect(res).to.be.json
           done()
         })
         .catch((err) => {

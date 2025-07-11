@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",    
+    "start": "node src/index.js",
     "test": "mocha userapi/test/*.js"
   },
   "repository": {
@@ -20,7 +20,8 @@
   "description": "",
   "dependencies": {
     "body-parser": "^2.2.0",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "mixme": "^2.0.2"
   },
   "devDependencies": {
     "chai": "^5.2.1",
