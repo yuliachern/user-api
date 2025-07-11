@@ -3,14 +3,15 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "mocha userapi/test/**/*.test.js"
+    "start": "node src/index.js",
+    "test": "mocha test/*.js"
   },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/yuliachern/user-api.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Yulia CHERNOVA",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/yuliachern/user-api/issues"
