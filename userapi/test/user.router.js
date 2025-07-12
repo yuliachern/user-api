@@ -1,6 +1,7 @@
 const app = require('../src/index')
 const chai = require('chai')
-const chaiHttp = require('chai-http')
+const chaiHttp = require('chai-http').default || require('chai-http')
+
 const db = require('../src/dbClient')
 
 chai.use(chaiHttp)
