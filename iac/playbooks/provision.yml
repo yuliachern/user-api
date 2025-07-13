@@ -6,29 +6,19 @@
       apt:
         update_cache: yes
 
-    - name: Install Node.js
+    - name: Install Node.js and npm
       apt:
-        name: nodejs
+        name:
+          - nodejs
+          - npm
         state: present
 
-    - name: Install npm
-      apt:
-        name: npm
-        state: present
-
-    - name: Install Redis
+    - name: Install Redis server
       apt:
         name: redis-server
         state: present
 
-    - name: Install dependencies
-      shell: npm install
-      args:
-        chdir: /vagrant/userapi
-
-    - name: Run app (development mode)
-      shell: node src/index.js
-      args:
-        chdir: /vagrant/userapi
-      async: 10
-      poll: 0
+    - name: Ensure userapi dependencies are installed
+      npm:
+        path: /home/vagrant/userapi
+        production: no
