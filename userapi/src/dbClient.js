@@ -1,17 +1,20 @@
-var redis = require("redis");
-const configure = require('./configure')
+const redis = require('redis');
+const config = require('./configure')();
 
-const config = configure()
-var db = redis.createClient({
-  host: config.redis.host,
-  port: config.redis.port,
-  retry_strategy: () => {
-    return new Error("Retry time exhausted")
-  }
-})
-
-process.on('SIGINT', function() {
-  db.quit();
+const client = redis.createClient({
+  url: `redis://${config.redis.host}:${config.redis.port}`
 });
 
-module.exports = db
+client.on('error', (err) => console.error('Redis Client Error', err));
+client.connect();
+
+module.exports = {
+  client,
+  flushdb: async () => await client.flushDb(),
+  quit: async () => await client.quit(),
+  ping: async () => await client.ping(),
+  hSet: async (key, data) => {
+    const flatData = Object.entries(data).flat();
+    return await client.hSet(key, flatData);
+}
+};

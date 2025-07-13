@@ -7,7 +7,8 @@ describe('Redis', () => {
     db = require('../src/dbClient')
   })
   
-  it('should connect to Redis', () => {
-    expect(db.connected).to.eql(true)
+  it('should connect to Redis', async () => {
+    const response = await db.ping()
+    expect(response).to.eql('PONG')
   })
 })

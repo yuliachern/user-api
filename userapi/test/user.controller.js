@@ -1,28 +1,35 @@
-const { expect } = require('chai')
+const { expect } = require('chai') 
 const userController = require('../src/controllers/user')
 const db = require('../src/dbClient')
 
 describe('User', () => {
-  
-  beforeEach(() => {
-    // Clean DB before each test
-    db.flushdb()
+  beforeEach(async () => {
+    
+    await db.flushdb()
   })
 
   describe('Create', () => {
 
-    it('create a new user', (done) => {
+    it('create a new user', async () => {
       const user = {
         username: 'yuliachernova',
         firstname: 'Yulia',
         lastname: 'Chernova'
-      }
-      userController.create(user, (err, result) => {
+  }
+
+  await new Promise((resolve, reject) => {
+    userController.create(user, (err, result) => {
+      try {
         expect(err).to.be.equal(null)
         expect(result).to.be.equal('OK')
-        done()
-      })
+        resolve()
+      } catch (e) {
+        reject(e)
+      }
     })
+  })
+})
+
 
     it('passing wrong user parameters', (done) => {
       const user = {
@@ -36,26 +43,6 @@ describe('User', () => {
       })
     })
 
-    // it('avoid creating an existing user', (done)=> {
-    //   // TODO create this test
-    //   // Warning: the user already exists
-    //   done()
-    // })
+    
   })
-
-  // TODO Create test for the get method
-  // describe('Get', ()=> {
-  //   
-  //   it('get a user by username', (done) => {
-  //     // 1. First, create a user to make this unit test independent from the others
-  //     // 2. Then, check if the result of the get method is correct
-  //     done()
-  //   })
-  //
-  //   it('cannot get a user when it does not exist', (done) => {
-  //     // Chech with any invalid user
-  //     done()
-  //   })
-  //
-  // })
 })

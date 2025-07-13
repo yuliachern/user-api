@@ -6,7 +6,7 @@ const app = express()
 const port = process.env.PORT || 3005
 
 const db = require('./dbClient')
-db.on("error", (err) => {
+db.client.on("error", (err) => {
   console.error(err)
 })
 

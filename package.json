@@ -21,11 +21,12 @@
   "dependencies": {
     "body-parser": "^2.2.0",
     "express": "^5.1.0",
-    "mixme": "^2.0.2"
+    "mixme": "^2.0.2",
+    "redis": "^5.6.0"
   },
   "devDependencies": {
-    "chai": "^5.2.1",
-    "chai-http": "^5.1.2",
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
     "mocha": "^11.7.1",
     "nodemon": "^3.1.10"
   }
